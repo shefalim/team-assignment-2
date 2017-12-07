@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'javaisanart'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 # setup SQLAlchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -23,7 +24,7 @@ class Movie(db.Model):
     __tablename__ = 'movies'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Integer)
-    director_id = db.Column(db.String(256))
+#    director_id = db.Column(db.String(256))
     year = db.Column(db.Integer)
     genre = db.Column(db.Text)
     director_id = db.Column(db.Integer, db.ForeignKey('directors.id'))
@@ -40,7 +41,7 @@ def members_page():
 @app.route('/movies')
 def show_all_movies():
     movies = Movie.query.all()
-    return render_template('movie-all.html', moviess=movies)
+    return render_template('movie-all.html', movies=movies)
 
 @app.route('/movie/add', methods=['GET', 'POST'])
 def add_movie():
