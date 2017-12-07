@@ -1,0 +1,49 @@
+{% extends "home-base.html" %}
+
+{% block title %}
+All Dicector
+{% endblock %}
+
+{% block head%}
+  {{super()}}
+  <style>
+    body {
+      padding-top: 54px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+   <h1 class="mt-5"><i class="fa fa-address-card" aria-hidden="true"></i> Director Directory</h1>
+  <div class="row bottom-margin">
+    <a href="/director/add" class="btn btn-primary" role="button" aria-disabeled="true">Add Director</a>
+  </div>
+{% if directors %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Director ID</th>
+        <th>Firt Name</th>
+        <th>Last Name</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for director in directors %}
+  <tr>
+        <th scope="row">{{director.id}}</th>
+        <td>{{director.first_name}}</td>
+        <td>{{director.last_name}}</td>
+        <td>
+          <a href="/director/edit/{{director.id}}" class ="btn btn-success" role="button" aria-disabled="true"> Edit</a>
+          <a href="/director/delete/{{director.id}}" class="btn btn-danger" role="button" aria-disabled="true"> Delete</a>
+        </td>
+  </tr>
+   {% endfor %}
+ </tbody>
+</table>
+{% else %}
+<h3>There are no directors in the directory yet.</h3>
+{% endif %}
+</div>
+{% endblock %}
