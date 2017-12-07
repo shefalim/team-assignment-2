@@ -1,0 +1,24 @@
+{% extends "home-base.html"%}
+{% block title %}Team Project Members{% endblock %}
+
+{% block head%}
+  {{super()}}
+  <style>
+    body {
+      padding-top: 75px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_content%}
+<h1> Team Members: </h1>
+  <ul>
+    <li>Shefali Mehta</li>
+      <p>Shefali is a senior MIS major, her favorite Christmas movie is How the Grinch Stole Christmas. </p>
+    <li>Meghan Ruoff</li>
+      <p>Meghan is a junior MIS major, her favorite Christmas movie is Home Alone </p>
+    <li>Praakhya Edara</li>
+      <p>Praakhya is a junior finance and MIS major, her favorite movie is The Polar Express. </p>
+  </ul>
+
+{% endblock%}
