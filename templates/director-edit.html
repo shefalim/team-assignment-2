@@ -1,0 +1,31 @@
+{% extends "home-base.html" %}
+
+{% block title %}
+Edit Directors
+{% endblock %}
+
+{% block head%}
+  {{super()}}
+  <style>
+    body {
+      padding-top: 54px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+   <h1 class="mt-5"><i class="fa fa-book" aria-hidden="true"></i> Edit Directors:</h1>
+  <form action="/director/edit/{{director.id}}" method="post">
+    <div class="form-group">
+      <label>First Name </label>
+      <input class="form-control" type="text" name="first name" value="{{director.first_name}}" required="true">
+    </div>
+    <div class="form-group">
+    <label>Last Name </label>
+    <input class="form-control" type="text" name="last name" value="{{director.last_name}}" required="true">
+  </div>
+  <button type = "submit" class = "btn btn-primary"> Save Changes </button>
+</form>
+</div>
+{% endblock %}

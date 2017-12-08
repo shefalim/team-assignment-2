@@ -1,0 +1,35 @@
+{% extends "home-base.html" %}
+
+{% block title %}
+Edit Movies
+{% endblock %}
+
+{% block head%}
+  {{super()}}
+  <style>
+    body {
+      padding-top: 54px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+   <h1 class="mt-5"><i class="fa fa-book" aria-hidden="true"></i> Edit Movies:</h1>
+  <form action="/movie/edit/{{movie.id}}" method="post">
+    <div class="form-group">
+      <label> Movie Title </label>
+      <input class="form-control" type="text" name="movie title" value="{{movie.title}}" required="true">
+    </div>
+    <div class="form-group">
+    <label> Movie Year </label>
+    <input class="form-control" type="text" name="movie year" value="{{movie.year}}" required="true">
+  </div>
+  <div class="form-group">
+  <label> Movie Genre </label>
+  <input class="form-control" type="text" name="movie genre" value="{{movie.genre}}" required="true">
+</div>
+  <button type = "submit" class = "btn btn-primary"> Save Changes </button>
+</form>
+</div>
+{% endblock %}

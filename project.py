@@ -33,6 +33,16 @@ class Movie(db.Model):
 def index():
     return render_template('index.html')
 
+@app.route('/descriptions')
+def get_all_movies():
+    movies = [
+    'Elf',
+    'Home Alone',
+    'Love Actually'
+    ]
+    return render_template('descriptions.html',movies=movies)
+
+
 
 @app.route('/teaminfo')
 def members_page():
@@ -57,6 +67,28 @@ def add_movie():
         db.session.commit()
         return redirect(url_for('show_all_movies'))
 
+@app.route('/movie/delete/<int:id>', methods=['GET', 'POST'])
+def delete_movie(id):
+    movie = Movie.query.filter_by(id=id).first()
+    if request.method == 'GET':
+        return render_template('movie-delete.html', movie=movie)
+    if request.method == 'POST':
+        db.session.delete(movie)
+        db.session.commit()
+        return redirect(url_for('show_all_movies'))
+
+@app.route('/movie/edit/<int:id>', methods=['GET', 'POST'])
+def edit_movie(id):
+    movie = Movie.query.filter_by(id=id).first()
+    if request.method == 'GET':
+        return render_template('movie-edit.html', movie=movie)
+    if request.method == 'POST':
+        movie.title= request.form['movie title']
+        movie.year = request.form['movie year']
+        movie.genre = request.form['move genre']
+        db.session.commit()
+        return redirect(url_for('show_all_movies'))
+
 @app.route('/directors')
 def show_all_directors():
     directors = Director.query.all()
@@ -73,6 +105,29 @@ def add_director():
         db.session.add(director)
         db.session.commit()
         return redirect(url_for('show_all_directors'))
+
+@app.route('/director/delete/<int:id>', methods=['GET', 'POST'])
+def delete_director(id):
+    director = Director.query.filter_by(id=id).first()
+    if request.method == 'GET':
+        return render_template('director-delete.html', director=director)
+    if request.method == 'POST':
+        db.session.delete(director)
+        db.session.commit()
+        return redirect(url_for('show_all_directors'))
+
+@app.route('/director/edit/<int:id>', methods=['GET', 'POST'])
+def edit_director(id):
+    director = Director.query.filter_by(id=id).first()
+    if request.method == 'GET':
+        return render_template('director-edit.html', director=director)
+    if request.method == 'POST':
+        director.first_name = request.form['first name']
+        director.last_name = request.form['last name']
+        db.session.commit()
+        return redirect(url_for('show_all_directors'))
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
