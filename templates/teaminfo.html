@@ -6,7 +6,11 @@
   <style>
     body {
       padding-top: 75px;
+      color: green;
+      font: Impact;
     }
+
+
   </style>
 {% endblock %}
 
@@ -14,6 +18,12 @@
 <h1> Team Members: </h1>
   <ul>
     <li>Shefali Mehta</li>
+    <style>
+      li {
+        font-style: italic;
+        color: red;
+      }
+    </style>
       <p>Shefali is a senior MIS major, her favorite Christmas movie is How the Grinch Stole Christmas. </p>
       <img src = "{{url_for('static', filename = 'img/shefayfay.jpg')}}" width="180" height="200">
     <li>Meghan Ruoff</li>
